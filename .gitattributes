@@ -5,8 +5,8 @@
 *.cs     diff=csharp
 
 # Custom for Java
-*.class diff=astextplain
-*.java diff=astextplain
+*.class diff=java
+*.java diff
 
 # Standard to msysgit
 *.doc	 diff=astextplain
