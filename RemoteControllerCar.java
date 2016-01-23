@@ -13,21 +13,26 @@ public class RemoteControllerCar {
 		LCD.drawString("Waiting for input from remote...\n", 0,4);
 		
 		while(true){
-
+			if(rc.getRCInput()==8)
+			{
+				rc.closeConnection();
+				break;
+			}
 			switch(rc.getRCInput()){
 					
 				case 1:
 					LCD.drawString("input received: "+ rc.getRCInput() +" ", 0,4);
 					LCD.drawString("\n", 0,4);
+					rc.turnRight();
 					break;
 				case 2:
 					LCD.drawString("input received: "+ rc.getRCInput() +" ", 0,4);
+					rc.turnLeft();
 					break;
 				case 3:
 					LCD.drawString("input received: "+ rc.getRCInput() +" " + "Forward", 0,4);
 					LCD.drawString("\n", 0,4);
 					rc.forward();
-					
 					break;
 				case 4:
 					LCD.drawString("input received: "+ rc.getRCInput() +" "+ "Reverse", 0,4);
@@ -36,10 +41,10 @@ public class RemoteControllerCar {
 					break;
 
 				case 0:
-					LCD.drawString("no input received "+ rc.getRCInput(), 0,4);
+					LCD.drawString("Idle: "+ rc.getRCInput(), 0,4);
 					rc.idleInput();
 					break;
-			
+		
 			}
 		}
 		

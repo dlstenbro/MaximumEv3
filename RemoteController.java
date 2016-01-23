@@ -1,6 +1,8 @@
 package remoteDragRacer;
 
 import lejos.hardware.sensor.EV3IRSensor;
+import lejos.hardware.motor.EV3LargeRegulatedMotor;
+import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.motor.UnregulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
@@ -11,6 +13,8 @@ public class RemoteController {
 	
 	UnregulatedMotor wheelMotorB = new UnregulatedMotor(MotorPort.B);
 	UnregulatedMotor wheelMotorC = new UnregulatedMotor(MotorPort.C);
+	EV3MediumRegulatedMotor A = new EV3MediumRegulatedMotor(MotorPort.A);
+
 
 	EV3IRSensor rc = new EV3IRSensor(SensorPort.S4);
 	int rcChannel = 0;
@@ -31,11 +35,15 @@ public class RemoteController {
 		return rc.getRemoteCommand(rcChannel);
 	}
 	
+	public void idleInput(){
+		A.rotate(0);
+	}
+	
 	public void turnRight(){
-		
+		A.rotate(-170, true);		
 	}
 	public void turnLeft(){
-		
+		A.rotate(170, true);
 	}
 	
 	public void forward(){
@@ -46,12 +54,28 @@ public class RemoteController {
 		wheelMotorB.forward();
 		wheelMotorC.forward();
 		
-//		wheelMotorB.flt();
-//		wheelMotorC.flt();		
-//		wheelMotorB.close();
-//		wheelMotorC.close();
+		if(getRCInput()==0){
+			stopMotors();
+		}
+				
+	}
+	private void stopMotors() {
+		// TODO Auto-generated method stub
+		wheelMotorB.flt();
+		wheelMotorC.flt();			
+		//wheelMotorB.stop();
+		//wheelMotorC.stop();
 		
 	}
+
+	public void closeConnection(){
+		
+		A.close();
+		wheelMotorB.close();
+		wheelMotorC.close();
+		
+	}
+	
 	public void reverse(){
 		wheelMotorB.setPower(100);
 		wheelMotorC.setPower(100);
@@ -59,19 +83,9 @@ public class RemoteController {
 		wheelMotorB.backward();
 		wheelMotorC.backward();
 
-//		wheelMotorB.flt();
-//		wheelMotorC.flt();		
-//		wheelMotorB.close();
-//		wheelMotorC.close(); 
+		if(getRCInput()==0){
+			stopMotors();
+		}		
 		
-		
-
 	}
-	public void idleInput(){
-		wheelMotorB.flt();
-		wheelMotorC.flt();		
-		wheelMotorB.close();
-		wheelMotorC.close();
-	}
-
 }
