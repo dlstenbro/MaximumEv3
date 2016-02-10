@@ -54,7 +54,7 @@ public class RemoteController {
 				
 	}
 	private void stopMotors() {
-		// "stop" motor function by "floating into stop"
+									// "stop" motor function by "floating into stop"
 		wheelMotorB.flt();
 		wheelMotorC.flt();					
 	}
