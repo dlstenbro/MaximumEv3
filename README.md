@@ -7,5 +7,5 @@ Objective - to create robotic applications using LEJOS Ev3 (Lego Mindstorms)
 * Control car and stream video data to mobile device 
 
 # leJOS applications
-Using OpenCV libraries for line detection: https://lejosnews.wordpress.com/2015/12/03/line-following-with-opencv/
-Object Detection using LIDAR: https://www.youtube.com/watch?v=Y85osIzHUGM
+* Using OpenCV libraries for line detection: https://lejosnews.wordpress.com/2015/12/03/line-following-with-opencv/
+* Object Detection using LIDAR: https://www.youtube.com/watch?v=Y85osIzHUGM
